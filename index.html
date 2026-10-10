@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f7f4">
+    <title>Folio — Split PDFs by chapter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Folio home">
+        <span class="brand-mark" aria-hidden="true">f.</span>
+        <span>folio</span>
+      </a>
+      <span class="privacy-note"><span class="privacy-dot"></span> Private by design · files stay on your device</span>
+    </header>
+
+    <main class="app-shell">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">A calmer way to organize documents</p>
+        <h1 id="page-title">One book. Every chapter,<br><span>right where it belongs.</span></h1>
+        <p class="intro-copy">Drop in a PDF and Folio will find its chapter breaks. Review the sections, make any edits, and download neatly split files.</p>
+      </section>
+
+      <section class="workspace" aria-label="PDF chapter splitter">
+        <div class="upload-card" id="drop-zone">
+          <div class="upload-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M15 5.5h12l9 9V40a2.5 2.5 0 0 1-2.5 2.5h-19A2.5 2.5 0 0 1 12 40V8a2.5 2.5 0 0 1 3-2.5Z" stroke="currentColor" stroke-width="1.8"/>
+              <path d="M27 6v9h9M24 33V21m0 0-5 5m5-5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="upload-copy">
+            <h2>Bring your PDF in</h2>
+            <p>We’ll look for bookmarks first, then chapter headings in the text.</p>
+          </div>
+          <label class="button button-dark file-button" for="pdf-input">Choose a PDF</label>
+          <input id="pdf-input" type="file" accept="application/pdf,.pdf">
+          <p class="drop-hint">or drag and drop it here <span>· PDF up to your device’s available memory</span></p>
+        </div>
+
+        <div class="status-message" id="status-message" role="status" aria-live="polite" hidden></div>
+
+        <section class="document-panel" id="document-panel" hidden aria-labelledby="document-title">
+          <div class="document-header">
+            <div class="document-identity">
+              <div class="pdf-badge" aria-hidden="true">PDF</div>
+              <div class="document-copy">
+                <h2 id="document-title"></h2>
+                <p id="document-meta"></p>
+              </div>
+            </div>
+            <button class="text-button" id="remove-file" type="button">Remove file</button>
+          </div>
+
+          <div class="chapter-heading">
+            <div>
+              <p class="eyebrow">Your split plan</p>
+              <h2>Chapters <span class="chapter-count" id="chapter-count">0</span></h2>
+            </div>
+            <button class="button button-light" id="add-chapter" type="button">＋ Add chapter</button>
+          </div>
+
+          <div class="chapter-list" id="chapter-list"></div>
+          <p class="chapter-help" id="chapter-help">Edit a title or start page to fine-tune the split. Each chapter includes pages up to the next start page.</p>
+
+          <div class="export-footer">
+            <div class="export-info">
+              <span class="export-icon" aria-hidden="true">↧</span>
+              <div>
+                <strong>Ready when you are</strong>
+                <p>All chapters will be packed into one ZIP file.</p>
+              </div>
+            </div>
+            <button class="button button-accent" id="export-button" type="button">Split &amp; download <span aria-hidden="true">→</span></button>
+          </div>
+        </section>
+
+        <div class="how-it-works">
+          <span class="how-icon" aria-hidden="true">✳</span>
+          <p><strong>Nothing leaves your device.</strong> Folio uses your PDF’s bookmarks or searchable text to find chapter starts. Scanned pages without text may need manual chapter markers.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Made for the books you keep close.</span>
+      <span>Works in your browser · no account needed</span>
+    </footer>
+  </body>
+</html>
